@@ -22,7 +22,14 @@ microbit/              ← extension development
 hexbug-farm-gate/      ← legacy CAD / docs
 ```
 
-## Develop the Gate extension
+## Push to GitHub (TUS token)
+
+Do not use personal GitHub credentials. See [docs/GITHUB.md](docs/GITHUB.md).
+
+```powershell
+$env:CODE4FUN_GITHUB_TOKEN = "ghp_..."
+.\scripts\push.ps1 -SetUpstream
+```
 
 ```powershell
 cd microbit

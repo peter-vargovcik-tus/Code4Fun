@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# MakeCode build output
+**/built/
+**/pxt_modules/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.cursor/
+
+# Large generated CAD (optional — remove if you want STEP files in git)
+# hexbug-farm-gate/cadquery/output/
+# hexbug-farm-gate/rev2/output/

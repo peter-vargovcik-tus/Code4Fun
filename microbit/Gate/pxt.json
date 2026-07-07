@@ -1,0 +1,12 @@
+{
+  "name": "gate-dev",
+  "description": "Development project for the TUS Code4Fun Gate component.",
+  "files": [
+    "gate.ts",
+    "main.ts"
+  ],
+  "public": false,
+  "dependencies": {
+    "core": "*"
+  }
+}

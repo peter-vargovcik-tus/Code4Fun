@@ -1,0 +1,12 @@
+{
+  "name": "code4fun-extension-bundle",
+  "description": "Bundle for importing the Code4Fun extension via Extensions → Import file.",
+  "files": [
+    "main.ts",
+    "gate.ts"
+  ],
+  "public": false,
+  "dependencies": {
+    "core": "*"
+  }
+}

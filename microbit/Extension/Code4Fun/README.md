@@ -4,20 +4,20 @@ Student-facing extension package. Appears in the toolbox as **Code4Fun**, simila
 
 ## Blocks
 
-### Gate
+### Gate (main toolbox)
 
 - `gate open`
 - `gate close`
 - `gate is open`
 - `gate is closed`
 
-### Configuration
+### Configuration (under **More...**)
 
-- `set gate servo pin to ...` (default P0)
-- `set gate closed angle to ...` (default 10)
-- `set gate open angle to ...` (default 90)
-- `set gate step size to ... degrees` (default 10)
-- `set gate move delay to ... ms` (default 60)
+- `set gate servo pin to ...`
+- `set gate closed angle to ...`
+- `set gate open angle to ...`
+- `set gate step size to ... degrees`
+- `set gate move delay to ... ms`
 
 Students can use `gate close` immediately — no setup required.
 

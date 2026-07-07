@@ -184,6 +184,7 @@ namespace code4fun {
      */
     //% blockId=code4fun_set_servo_pin block="set gate servo pin to %pin"
     //% group="Configuration"
+    //% advanced=true
     //% weight=50
     export function setGateServoPin(pin: AnalogPin): void {
         _gate.setServoPin(pin)
@@ -194,6 +195,7 @@ namespace code4fun {
      */
     //% blockId=code4fun_set_closed_angle block="set gate closed angle to %angle"
     //% group="Configuration"
+    //% advanced=true
     //% weight=49
     export function setGateClosedAngle(angle: number): void {
         _gate.setClosedAngle(angle)
@@ -204,6 +206,7 @@ namespace code4fun {
      */
     //% blockId=code4fun_set_open_angle block="set gate open angle to %angle"
     //% group="Configuration"
+    //% advanced=true
     //% weight=48
     export function setGateOpenAngle(angle: number): void {
         _gate.setOpenAngle(angle)
@@ -214,6 +217,7 @@ namespace code4fun {
      */
     //% blockId=code4fun_set_step_degrees block="set gate step size to %degrees degrees"
     //% group="Configuration"
+    //% advanced=true
     //% weight=47
     export function setGateStepSize(degrees: number): void {
         _gate.setStepDegrees(degrees)
@@ -224,6 +228,7 @@ namespace code4fun {
      */
     //% blockId=code4fun_set_move_delay block="set gate move delay to %delayMs ms"
     //% group="Configuration"
+    //% advanced=true
     //% weight=46
     export function setGateMoveDelay(delayMs: number): void {
         _gate.setMoveDelay(delayMs)

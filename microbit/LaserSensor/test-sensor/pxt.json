@@ -1,0 +1,11 @@
+{
+  "name": "laser-sensor-test",
+  "description": "Plain pin test for KY-008 laser transmitter + LDR receiver (no extension).",
+  "files": [
+    "main.ts"
+  ],
+  "public": false,
+  "dependencies": {
+    "core": "*"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "lasersensor-dev",
+  "description": "Development project for the TUS Code4Fun LaserSensor component.",
+  "files": [
+    "gate.ts",
+    "laserSensor.ts",
+    "main.ts"
+  ],
+  "public": false,
+  "dependencies": {
+    "core": "*"
+  }
+}

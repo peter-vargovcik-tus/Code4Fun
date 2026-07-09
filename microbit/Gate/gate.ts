@@ -137,7 +137,7 @@ let _gate = new GateController()
  * Defaults: servo P0, closed 10°, open 90°, step 10°, delay 60 ms.
  */
 //% color=#7B2CBF icon="\uf19d" weight=96 block="Code4Fun"
-//% groups='["Gate", "Configuration"]'
+//% groups='["Gate", "Laser", "Configuration"]'
 namespace code4fun {
     /**
      * Open the gate.

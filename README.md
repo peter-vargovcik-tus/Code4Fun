@@ -10,14 +10,14 @@ Students add the **Code4Fun** blocks in [MakeCode for micro:bit](https://makecod
 2. Paste: `https://github.com/peter-vargovcik-tus/Code4Fun`
 3. Add **tus-code4fun**
 
-Toolbox category **Code4Fun** → **Gate** / **Laser** blocks.
+Toolbox category **Code4Fun** → **Gate** blocks.
 
 See [microbit/Extension/Code4Fun/IMPORT.md](microbit/Extension/Code4Fun/IMPORT.md) for offline and share-link options.
 
 ## Repository layout
 
 ```text
-gate.ts / laserSensor.ts / pxt.json   ← MakeCode extension (deployed from microbit/)
+gate.ts / pxt.json / icon.png   ← MakeCode extension (deployed from microbit/)
 microbit/              ← extension development
 hexbug-farm-gate/      ← legacy CAD / docs
 ```
@@ -38,9 +38,9 @@ cd microbit
 .\deploy-extension.ps1
 ```
 
-This updates `gate.ts`, `laserSensor.ts`, and `pxt.json` at the repo root and rebuilds local test hex files.
+This updates `gate.ts` and `pxt.json` at the repo root and rebuilds local test hex files.
 
 ## Hardware
 
-Keyestudio Sensor Shield V2, servo on **P0**, laser receiver on **P1**, laser transmitter on **P2**, jumpers **V1/V2** to **5V**, external shield power.  
-See [hexbug-farm-gate/docs/power-and-servo.md](hexbug-farm-gate/docs/power-and-servo.md) and [hexbug-farm-gate/docs/laser-sensor.md](hexbug-farm-gate/docs/laser-sensor.md).
+Keyestudio Sensor Shield V2, servo on **P0**, jumpers **V1/V2** to **5V**, external shield power.  
+See [hexbug-farm-gate/docs/power-and-servo.md](hexbug-farm-gate/docs/power-and-servo.md).

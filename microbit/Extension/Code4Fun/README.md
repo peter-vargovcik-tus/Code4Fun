@@ -11,12 +11,6 @@ Student-facing extension package. Appears in the toolbox as **Code4Fun**, simila
 - `gate is open`
 - `gate is closed`
 
-### Laser (main toolbox)
-
-- `laser on` / `laser off`
-- `laser beam blocked` / `laser beam clear`
-- `when laser beam blocked`
-
 ### Configuration (under **More...**)
 
 - `set gate servo pin to ...`
@@ -24,16 +18,12 @@ Student-facing extension package. Appears in the toolbox as **Code4Fun**, simila
 - `set gate open angle to ...`
 - `set gate step size to ... degrees`
 - `set gate move delay to ... ms`
-- `set laser transmitter pin to ...`
-- `set laser receiver pin to ...` (analog)
-- `set laser threshold to ...` (0–1023)
-- `set laser clear when reading is above threshold ...`
 
-Students can use `gate close` and `laser beam blocked` immediately — no setup required.
+Students can use `gate close` immediately — no setup required.
 
 ## Publish to GitHub
 
-Push this folder to a public GitHub repo. Repo root should contain `pxt.json`, `gate.ts`, `laserSensor.ts`, and `icon.png`.
+Push this folder to a public GitHub repo. Repo root should contain `pxt.json`, `gate.ts`, and `icon.png`.
 
 Students add it in MakeCode:
 

@@ -42,5 +42,6 @@ This updates `gate.ts`, `sheepPen.ts`, and `pxt.json` at the repo root and rebui
 
 ## Hardware
 
-Keyestudio Sensor Shield V2, gate 1 servo on **P0**, FC-51 sensor on **P1**, jumpers **V1/V2** to **5V**, external shield power.  
+Keyestudio Sensor Shield V2, gate servo on **P0**, FC-51 sensor on **P1**, jumpers **V1/V2** to **5V**, external shield power.  
+Run `initialize gate on pin P0` on start to seat the servo gently.  
 See [hexbug-farm-gate/docs/power-and-servo.md](hexbug-farm-gate/docs/power-and-servo.md).

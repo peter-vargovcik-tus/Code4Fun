@@ -6,28 +6,29 @@ Student-facing extension package. Appears in the toolbox as **Code4Fun**, simila
 
 ### Gate (main toolbox)
 
-- `gate 1 open` / `gate 1 close`
-- `gate 1 is open` / `gate 1 is closed`
-- Gates **1–4** are supported (one servo per 3D-printed gate unit)
+- `initialize gate on pin P0` — gently cycles open/closed to seat the servo safely
+- `gate open on pin P0` / `gate close on pin P0`
+- `gate on pin P0 is open` / `gate on pin P0 is closed`
+
+Each gate is one 3D-printed unit with its own servo pin.
 
 ### Sheep pen (main toolbox)
 
-- `set up gate 1 sheep counter sensor P1 for 3 sheep`
-- `count sheep at gate 1`
-- `sheep count at gate 1`
-- `reset sheep counter at gate 1`
+- `set up sheep counter gate pin P0 sensor P1 for 3 sheep`
+- `count sheep gate pin P0 sensor P1`
+- `sheep count gate pin P0 sensor P1`
+- `reset sheep counter gate pin P0 sensor P1`
 
-First sheep opens the gate, the gate closes after the chosen number of sheep pass.
+First sheep opens the gate, the gate closes after the chosen number pass.
 
 ### Configuration (under **More...**)
 
-- `set gate 1 servo pin to ...`
-- `set gate 1 closed angle to ...`
-- `set gate 1 open angle to ...`
-- `set gate 1 step size to ... degrees`
-- `set gate 1 move delay to ... ms`
+- `set gate on pin P0 closed angle to ...`
+- `set gate on pin P0 open angle to ...`
+- `set gate on pin P0 step size to ... degrees`
+- `set gate on pin P0 move delay to ... ms`
 
-Students can use `gate 1 close` immediately — no setup required.
+Run `initialize gate on pin ...` on start before normal gate use.
 
 ## Publish to GitHub
 

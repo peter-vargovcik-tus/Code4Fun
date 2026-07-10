@@ -1,5 +1,5 @@
 class SheepPenController {
-    private gateId: number
+    private gatePin: AnalogPin
     private sensorPin: DigitalPin
     private limit: number
     private count: number
@@ -9,7 +9,7 @@ class SheepPenController {
     private configured: boolean
 
     constructor() {
-        this.gateId = 1
+        this.gatePin = AnalogPin.P0
         this.sensorPin = DigitalPin.P1
         this.limit = 3
         this.count = 0
@@ -19,8 +19,12 @@ class SheepPenController {
         this.configured = false
     }
 
-    configure(gateId: number, sensorPin: DigitalPin, limit: number) {
-        this.gateId = gateId
+    matchesPins(gatePin: AnalogPin, sensorPin: DigitalPin): boolean {
+        return this.gatePin == gatePin && this.sensorPin == sensorPin
+    }
+
+    configure(gatePin: AnalogPin, sensorPin: DigitalPin, limit: number) {
+        this.gatePin = gatePin
         this.sensorPin = sensorPin
         if (limit < 1) {
             this.limit = 1
@@ -41,12 +45,12 @@ class SheepPenController {
             this.count += 1
 
             if (!this.gateOpened) {
-                code4fun.gateOpen(this.gateId)
+                code4fun.gateOpen(this.gatePin)
                 this.gateOpened = true
             }
 
             if (this.count >= this.limit) {
-                code4fun.gateClose(this.gateId)
+                code4fun.gateClose(this.gatePin)
                 this.gateOpened = false
                 this.finished = true
             }
@@ -71,74 +75,64 @@ class SheepPenController {
         this.gateOpened = false
         this.finished = false
         this.wasBlocked = false
-        code4fun.gateClose(this.gateId)
+        code4fun.gateClose(this.gatePin)
     }
 }
 
-let _sheepPens: SheepPenController[] = []
+let _sheepPenList: SheepPenController[] = []
 
-function sheepPenById(gateId: number): SheepPenController {
-    let id = gateId
-    if (id < 1) {
-        id = 1
+function sheepPenByPins(gatePin: AnalogPin, sensorPin: DigitalPin): SheepPenController {
+    for (let i = 0; i < _sheepPenList.length; i++) {
+        if (_sheepPenList[i].matchesPins(gatePin, sensorPin)) {
+            return _sheepPenList[i]
+        }
     }
 
-    if (id > MAX_GATES) {
-        id = MAX_GATES
-    }
-
-    let index = id - 1
-
-    if (!_sheepPens[index]) {
-        _sheepPens[index] = new SheepPenController()
-    }
-
-    return _sheepPens[index]
+    let pen = new SheepPenController()
+    pen.configure(gatePin, sensorPin, 3)
+    _sheepPenList.push(pen)
+    return pen
 }
 
 namespace code4fun {
     /**
-     * Set up a sheep counter for a gate and sensor.
+     * Set up a sheep counter for a gate pin and sensor pin.
      */
-    //% blockId=code4fun_setup_sheep_pen block="set up gate %gateId sheep counter sensor %sensorPin for %limit sheep"
+    //% blockId=code4fun_setup_sheep_pen block="set up sheep counter gate pin %gatePin sensor %sensorPin for %limit sheep"
     //% group="Sheep pen"
-    //% gateId.min=1 gateId.max=4 defl=1
     //% limit.min=1 limit.max=99 defl=3
     //% weight=70
-    export function setupSheepPen(gateId: number, sensorPin: DigitalPin, limit: number): void {
-        sheepPenById(gateId).configure(gateId, sensorPin, limit)
+    export function setupSheepPen(gatePin: AnalogPin, sensorPin: DigitalPin, limit: number): void {
+        sheepPenByPins(gatePin, sensorPin).configure(gatePin, sensorPin, limit)
     }
 
     /**
-     * Update the sheep counter for a gate. Call this inside a forever loop.
+     * Update the sheep counter. Call this inside a forever loop.
      */
-    //% blockId=code4fun_update_sheep_pen block="count sheep at gate %gateId"
+    //% blockId=code4fun_update_sheep_pen block="count sheep gate pin %gatePin sensor %sensorPin"
     //% group="Sheep pen"
-    //% gateId.min=1 gateId.max=4 defl=1
     //% weight=69
-    export function updateSheepPen(gateId: number): number {
-        return sheepPenById(gateId).tick()
+    export function updateSheepPen(gatePin: AnalogPin, sensorPin: DigitalPin): number {
+        return sheepPenByPins(gatePin, sensorPin).tick()
     }
 
     /**
-     * Get the current sheep count for a gate.
+     * Get the current sheep count.
      */
-    //% blockId=code4fun_sheep_count block="sheep count at gate %gateId"
+    //% blockId=code4fun_sheep_count block="sheep count gate pin %gatePin sensor %sensorPin"
     //% group="Sheep pen"
-    //% gateId.min=1 gateId.max=4 defl=1
     //% weight=68
-    export function sheepCount(gateId: number): number {
-        return sheepPenById(gateId).getCount()
+    export function sheepCount(gatePin: AnalogPin, sensorPin: DigitalPin): number {
+        return sheepPenByPins(gatePin, sensorPin).getCount()
     }
 
     /**
-     * Reset the sheep counter for a gate.
+     * Reset the sheep counter.
      */
-    //% blockId=code4fun_reset_sheep_pen block="reset sheep counter at gate %gateId"
+    //% blockId=code4fun_reset_sheep_pen block="reset sheep counter gate pin %gatePin sensor %sensorPin"
     //% group="Sheep pen"
-    //% gateId.min=1 gateId.max=4 defl=1
     //% weight=67
-    export function resetSheepPen(gateId: number): void {
-        sheepPenById(gateId).reset()
+    export function resetSheepPen(gatePin: AnalogPin, sensorPin: DigitalPin): void {
+        sheepPenByPins(gatePin, sensorPin).reset()
     }
 }

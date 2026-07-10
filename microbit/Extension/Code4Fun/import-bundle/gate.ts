@@ -182,8 +182,11 @@ namespace code4fun {
     /**
      * Gently cycle a gate open and closed to seat the servo safely.
      */
-    //% blockId=code4fun_gate_initialize block="initialize gate on pin %pin"
+    //% blockId=code4fun_gate_init_pin block="initialize gate on pin %pin"
     //% group="Gate"
+    //% pin.fieldEditor=gridpicker
+    //% pin.fieldOptions.withPinRepeated=0
+    //% pin.defl=AnalogPin.P0
     //% weight=101
     export function initializeGate(pin: AnalogPin): void {
         gateByPin(pin).initialize()
@@ -192,8 +195,11 @@ namespace code4fun {
     /**
      * Open a gate on the given pin.
      */
-    //% blockId=code4fun_gate_open block="gate open on pin %pin"
+    //% blockId=code4fun_gate_open_pin block="gate open on pin %pin"
     //% group="Gate"
+    //% pin.fieldEditor=gridpicker
+    //% pin.fieldOptions.withPinRepeated=0
+    //% pin.defl=AnalogPin.P0
     //% weight=100
     export function gateOpen(pin: AnalogPin): void {
         gateByPin(pin).open()
@@ -202,8 +208,11 @@ namespace code4fun {
     /**
      * Close a gate on the given pin.
      */
-    //% blockId=code4fun_gate_close block="gate close on pin %pin"
+    //% blockId=code4fun_gate_close_pin block="gate close on pin %pin"
     //% group="Gate"
+    //% pin.fieldEditor=gridpicker
+    //% pin.fieldOptions.withPinRepeated=0
+    //% pin.defl=AnalogPin.P0
     //% weight=99
     export function gateClose(pin: AnalogPin): void {
         gateByPin(pin).close()
@@ -212,8 +221,11 @@ namespace code4fun {
     /**
      * Check whether a gate on the given pin is open.
      */
-    //% blockId=code4fun_gate_is_open block="gate on pin %pin is open"
+    //% blockId=code4fun_gate_is_open_pin block="gate on pin %pin is open"
     //% group="Gate"
+    //% pin.fieldEditor=gridpicker
+    //% pin.fieldOptions.withPinRepeated=0
+    //% pin.defl=AnalogPin.P0
     //% weight=80
     export function gateIsOpen(pin: AnalogPin): boolean {
         return gateByPin(pin).isOpen()
@@ -222,8 +234,11 @@ namespace code4fun {
     /**
      * Check whether a gate on the given pin is closed.
      */
-    //% blockId=code4fun_gate_is_closed block="gate on pin %pin is closed"
+    //% blockId=code4fun_gate_is_closed_pin block="gate on pin %pin is closed"
     //% group="Gate"
+    //% pin.fieldEditor=gridpicker
+    //% pin.fieldOptions.withPinRepeated=0
+    //% pin.defl=AnalogPin.P0
     //% weight=79
     export function gateIsClosed(pin: AnalogPin): boolean {
         return gateByPin(pin).isClosed()
@@ -232,8 +247,11 @@ namespace code4fun {
     /**
      * Set the closed angle for a gate on the given pin.
      */
-    //% blockId=code4fun_set_closed_angle block="set gate on pin %pin closed angle to %angle"
+    //% blockId=code4fun_set_closed_angle_pin block="set gate on pin %pin closed angle to %angle"
     //% group="Configuration"
+    //% pin.fieldEditor=gridpicker
+    //% pin.fieldOptions.withPinRepeated=0
+    //% pin.defl=AnalogPin.P0
     //% advanced=true
     //% weight=49
     export function setGateClosedAngle(pin: AnalogPin, angle: number): void {
@@ -243,8 +261,11 @@ namespace code4fun {
     /**
      * Set the open angle for a gate on the given pin.
      */
-    //% blockId=code4fun_set_open_angle block="set gate on pin %pin open angle to %angle"
+    //% blockId=code4fun_set_open_angle_pin block="set gate on pin %pin open angle to %angle"
     //% group="Configuration"
+    //% pin.fieldEditor=gridpicker
+    //% pin.fieldOptions.withPinRepeated=0
+    //% pin.defl=AnalogPin.P0
     //% advanced=true
     //% weight=48
     export function setGateOpenAngle(pin: AnalogPin, angle: number): void {
@@ -254,8 +275,11 @@ namespace code4fun {
     /**
      * Set how many degrees a gate moves per step.
      */
-    //% blockId=code4fun_set_step_degrees block="set gate on pin %pin step size to %degrees degrees"
+    //% blockId=code4fun_set_step_degrees_pin block="set gate on pin %pin step size to %degrees degrees"
     //% group="Configuration"
+    //% pin.fieldEditor=gridpicker
+    //% pin.fieldOptions.withPinRepeated=0
+    //% pin.defl=AnalogPin.P0
     //% advanced=true
     //% weight=47
     export function setGateStepSize(pin: AnalogPin, degrees: number): void {
@@ -265,8 +289,11 @@ namespace code4fun {
     /**
      * Set the delay between gate movement steps.
      */
-    //% blockId=code4fun_set_move_delay block="set gate on pin %pin move delay to %delayMs ms"
+    //% blockId=code4fun_set_move_delay_pin block="set gate on pin %pin move delay to %delayMs ms"
     //% group="Configuration"
+    //% pin.fieldEditor=gridpicker
+    //% pin.fieldOptions.withPinRepeated=0
+    //% pin.defl=AnalogPin.P0
     //% advanced=true
     //% weight=46
     export function setGateMoveDelay(pin: AnalogPin, delayMs: number): void {

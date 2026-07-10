@@ -98,8 +98,14 @@ namespace code4fun {
     /**
      * Set up a sheep counter for a gate pin and sensor pin.
      */
-    //% blockId=code4fun_setup_sheep_pen block="set up sheep counter gate pin %gatePin sensor %sensorPin for %limit sheep"
+    //% blockId=code4fun_setup_sheep_pen_pins block="set up sheep counter gate pin %gatePin sensor %sensorPin for %limit sheep"
     //% group="Sheep pen"
+    //% gatePin.fieldEditor=gridpicker
+    //% gatePin.fieldOptions.withPinRepeated=0
+    //% gatePin.defl=AnalogPin.P0
+    //% sensorPin.fieldEditor=gridpicker
+    //% sensorPin.fieldOptions.withPinRepeated=0
+    //% sensorPin.defl=DigitalPin.P1
     //% limit.min=1 limit.max=99 defl=3
     //% weight=70
     export function setupSheepPen(gatePin: AnalogPin, sensorPin: DigitalPin, limit: number): void {
@@ -109,8 +115,14 @@ namespace code4fun {
     /**
      * Update the sheep counter. Call this inside a forever loop.
      */
-    //% blockId=code4fun_update_sheep_pen block="count sheep gate pin %gatePin sensor %sensorPin"
+    //% blockId=code4fun_update_sheep_pen_pins block="count sheep gate pin %gatePin sensor %sensorPin"
     //% group="Sheep pen"
+    //% gatePin.fieldEditor=gridpicker
+    //% gatePin.fieldOptions.withPinRepeated=0
+    //% gatePin.defl=AnalogPin.P0
+    //% sensorPin.fieldEditor=gridpicker
+    //% sensorPin.fieldOptions.withPinRepeated=0
+    //% sensorPin.defl=DigitalPin.P1
     //% weight=69
     export function updateSheepPen(gatePin: AnalogPin, sensorPin: DigitalPin): number {
         return sheepPenByPins(gatePin, sensorPin).tick()
@@ -119,8 +131,14 @@ namespace code4fun {
     /**
      * Get the current sheep count.
      */
-    //% blockId=code4fun_sheep_count block="sheep count gate pin %gatePin sensor %sensorPin"
+    //% blockId=code4fun_sheep_count_pins block="sheep count gate pin %gatePin sensor %sensorPin"
     //% group="Sheep pen"
+    //% gatePin.fieldEditor=gridpicker
+    //% gatePin.fieldOptions.withPinRepeated=0
+    //% gatePin.defl=AnalogPin.P0
+    //% sensorPin.fieldEditor=gridpicker
+    //% sensorPin.fieldOptions.withPinRepeated=0
+    //% sensorPin.defl=DigitalPin.P1
     //% weight=68
     export function sheepCount(gatePin: AnalogPin, sensorPin: DigitalPin): number {
         return sheepPenByPins(gatePin, sensorPin).getCount()
@@ -129,8 +147,14 @@ namespace code4fun {
     /**
      * Reset the sheep counter.
      */
-    //% blockId=code4fun_reset_sheep_pen block="reset sheep counter gate pin %gatePin sensor %sensorPin"
+    //% blockId=code4fun_reset_sheep_pen_pins block="reset sheep counter gate pin %gatePin sensor %sensorPin"
     //% group="Sheep pen"
+    //% gatePin.fieldEditor=gridpicker
+    //% gatePin.fieldOptions.withPinRepeated=0
+    //% gatePin.defl=AnalogPin.P0
+    //% sensorPin.fieldEditor=gridpicker
+    //% sensorPin.fieldOptions.withPinRepeated=0
+    //% sensorPin.defl=DigitalPin.P1
     //% weight=67
     export function resetSheepPen(gatePin: AnalogPin, sensorPin: DigitalPin): void {
         sheepPenByPins(gatePin, sensorPin).reset()

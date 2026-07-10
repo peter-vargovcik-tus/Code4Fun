@@ -72,13 +72,32 @@ This opens a project with the Code4Fun blocks available.
 
 ---
 
+## Refresh after an extension update
+
+If you still see old blocks like `gate open` **without a pin picker**:
+
+1. Open your project in MakeCode.
+2. Go to **Extensions** (gear icon).
+3. **Remove** the old **tus-code4fun** / **Code4Fun** package.
+4. Add it again: `https://github.com/peter-vargovcik-tus/Code4Fun`
+5. Start a **new project** if old blocks still appear on the workspace.
+
+You should see version **0.4.1** blocks with pin pickers, for example:
+
+- `initialize gate on pin P0`
+- `gate open on pin P0`
+- `set up sheep counter gate pin P0 sensor P1 for 3 sheep`
+
+---
+
 ## Verify it worked
 
 You should see:
 
 - A **Code4Fun** category in the toolbox (like **Servos**)
-- **Gate** group: `gate open`, `gate close`, `gate is open`, `gate is closed`
-- **Configuration** group: optional settings
+- **Gate** group: `initialize gate on pin ...`, `gate open on pin ...`, etc.
+- **Sheep pen** group: sheep counter blocks with gate and sensor pins
+- **More...** → **Configuration** group: optional settings
 
 If blocks only appear in Explorer as `gate.ts` with no toolbox category, the extension was not added via **Extensions** — fix that first.
 

@@ -12,15 +12,6 @@ Student-facing extension package. Appears in the toolbox as **Code4Fun**, simila
 
 Each gate is one 3D-printed unit with its own servo pin.
 
-### Sheep pen (main toolbox)
-
-- `set up sheep counter gate pin P0 sensor P1 for 3 sheep`
-- `count sheep gate pin P0 sensor P1`
-- `sheep count gate pin P0 sensor P1`
-- `reset sheep counter gate pin P0 sensor P1`
-
-First sheep opens the gate, the gate closes after the chosen number pass.
-
 ### Configuration (under **More...**)
 
 - `set gate on pin P0 closed angle to ...`
@@ -30,9 +21,11 @@ First sheep opens the gate, the gate closes after the chosen number pass.
 
 Run `initialize gate on pin ...` on start before normal gate use.
 
+Sensor logic (for example counting sheep) belongs in the student project, not in the extension.
+
 ## Publish to GitHub
 
-Push this folder to a public GitHub repo. Repo root should contain `pxt.json`, `gate.ts`, `sheepPen.ts`, and `icon.png`.
+Push this folder to a public GitHub repo. Repo root should contain `pxt.json`, `gate.ts`, and `icon.png`.
 
 Students add it in MakeCode:
 

@@ -7,33 +7,26 @@ $root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $repoRoot = Split-Path -Parent $root
 $source = Join-Path $root $Component
 $extensionTarget = Join-Path $root "Extension\Code4Fun"
+$gateSource = Join-Path $source "gate.ts"
 $importBundle = Join-Path $extensionTarget "import-bundle"
 $dist = Join-Path $extensionTarget "dist"
 
-$extensionSources = @(
-    @{ Folder = "Gate"; File = "gate.ts" },
-    @{ Folder = "Gate"; File = "sheepPen.ts" }
-)
+if (-not (Test-Path $gateSource)) {
+    Write-Error "gate.ts not found in $source"
+    exit 1
+}
 
 New-Item -ItemType Directory -Force -Path $extensionTarget | Out-Null
 New-Item -ItemType Directory -Force -Path $importBundle | Out-Null
 New-Item -ItemType Directory -Force -Path $dist | Out-Null
 
-foreach ($item in $extensionSources) {
-    $srcPath = Join-Path (Join-Path $root $item.Folder) $item.File
-    if (-not (Test-Path $srcPath)) {
-        Write-Error "$($item.File) not found in $($item.Folder)"
-        exit 1
-    }
-
-    Copy-Item -Path $srcPath -Destination (Join-Path $extensionTarget $item.File) -Force
-    Copy-Item -Path $srcPath -Destination (Join-Path $importBundle $item.File) -Force
-    Copy-Item -Path $srcPath -Destination (Join-Path $repoRoot $item.File) -Force
-    Write-Host "Deployed $($item.Folder)\$($item.File) -> Extension\Code4Fun\"
-}
-
+Copy-Item -Path $gateSource -Destination (Join-Path $extensionTarget "gate.ts") -Force
+Copy-Item -Path $gateSource -Destination (Join-Path $importBundle "gate.ts") -Force
+Copy-Item -Path $gateSource -Destination (Join-Path $repoRoot "gate.ts") -Force
 Copy-Item -Path (Join-Path $extensionTarget "pxt.json") -Destination (Join-Path $repoRoot "pxt.json") -Force
-Write-Host "Deployed pxt.json -> repo root (for GitHub extension import)"
+
+Write-Host "Deployed $Component -> Extension\Code4Fun\gate.ts"
+Write-Host "Deployed gate.ts + pxt.json -> repo root (for GitHub extension import)"
 
 Push-Location $importBundle
 try {

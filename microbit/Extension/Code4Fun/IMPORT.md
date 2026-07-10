@@ -96,8 +96,9 @@ You should see:
 
 - A **Code4Fun** category in the toolbox (like **Servos**)
 - **Gate** group: `initialize gate on pin ...`, `gate open on pin ...`, etc.
-- **Sheep pen** group: sheep counter blocks with gate and sensor pins
 - **More...** → **Configuration** group: optional settings
+
+Sensor and counting logic (for example sheep through a gate) stays in the student project.
 
 If blocks only appear in Explorer as `gate.ts` with no toolbox category, the extension was not added via **Extensions** — fix that first.
 

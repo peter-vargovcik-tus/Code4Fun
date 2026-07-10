@@ -177,7 +177,7 @@ function gateByPin(pin: AnalogPin): GateController {
  * Servo mounting is fixed in hardware: logical open/close are mapped accordingly.
  */
 //% color=#7B2CBF icon="\uf19d" weight=96 block="Code4Fun"
-//% groups='["Gate", "Sheep pen", "Configuration"]'
+//% groups='["Gate", "Configuration"]'
 namespace code4fun {
     /**
      * Gently cycle a gate open and closed to seat the servo safely.

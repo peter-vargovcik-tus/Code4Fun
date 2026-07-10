@@ -3,8 +3,7 @@
   "description": "Bundle for importing the Code4Fun extension via Extensions → Import file.",
   "files": [
     "main.ts",
-    "gate.ts",
-    "sheepPen.ts"
+    "gate.ts"
   ],
   "public": false,
   "dependencies": {

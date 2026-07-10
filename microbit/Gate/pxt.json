@@ -3,7 +3,6 @@
   "description": "Development project for the TUS Code4Fun Gate component.",
   "files": [
     "gate.ts",
-    "sheepPen.ts",
     "main.ts"
   ],
   "public": false,

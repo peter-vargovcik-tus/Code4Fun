@@ -1,9 +1,10 @@
 {
   "name": "tus-code4fun",
   "description": "TUS Code4Fun — gate and pen blocks for BBC micro:bit",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "files": [
-    "gate.ts"
+    "gate.ts",
+    "sheepPen.ts"
   ],
   "public": true,
   "dependencies": {

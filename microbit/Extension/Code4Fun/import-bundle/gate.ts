@@ -5,6 +5,8 @@ enum GateState {
     Closing = 3
 }
 
+const MAX_GATES = 4
+
 class GateController {
     private servoPin: AnalogPin
     private openAngle: number
@@ -15,8 +17,8 @@ class GateController {
     private initialized: boolean
     private state: GateState
 
-    constructor() {
-        this.servoPin = AnalogPin.P0
+    constructor(servoPin: AnalogPin) {
+        this.servoPin = servoPin
         this.openAngle = 90
         this.closedAngle = 10
         this.moveDelayMs = 60
@@ -38,7 +40,7 @@ class GateController {
     setClosedAngle(angle: number) {
         this.closedAngle = this.clampAngle(angle)
         if (!this.initialized) {
-            this.currentAngle = this.closedAngle
+            this.currentAngle = this.logicalCloseAngle()
         }
     }
 
@@ -61,14 +63,14 @@ class GateController {
     open() {
         this.ensureInitialized()
         this.state = GateState.Opening
-        this.moveTo(this.openAngle)
+        this.moveTo(this.logicalOpenAngle())
         this.state = GateState.Open
     }
 
     close() {
         this.ensureInitialized()
         this.state = GateState.Closing
-        this.moveTo(this.closedAngle)
+        this.moveTo(this.logicalCloseAngle())
         this.state = GateState.Closed
     }
 
@@ -78,6 +80,14 @@ class GateController {
 
     isClosed(): boolean {
         return this.state == GateState.Closed
+    }
+
+    private logicalOpenAngle(): number {
+        return this.closedAngle
+    }
+
+    private logicalCloseAngle(): number {
+        return this.openAngle
     }
 
     private moveTo(targetAngle: number) {
@@ -110,7 +120,7 @@ class GateController {
 
     private ensureInitialized() {
         if (!this.initialized) {
-            this.currentAngle = this.closedAngle
+            this.currentAngle = this.logicalCloseAngle()
             this.state = GateState.Closed
             this.initialized = true
             this.stopServo()
@@ -130,107 +140,156 @@ class GateController {
     }
 }
 
-let _gate = new GateController()
+let _gates: GateController[] = []
+
+function clampGateId(gateId: number): number {
+    if (gateId < 1) {
+        return 1
+    }
+
+    if (gateId > MAX_GATES) {
+        return MAX_GATES
+    }
+
+    return gateId
+}
+
+function defaultServoPin(gateId: number): AnalogPin {
+    if (gateId == 1) {
+        return AnalogPin.P0
+    }
+
+    if (gateId == 2) {
+        return AnalogPin.P2
+    }
+
+    if (gateId == 3) {
+        return AnalogPin.P8
+    }
+
+    return AnalogPin.P12
+}
+
+function gateById(gateId: number): GateController {
+    let id = clampGateId(gateId)
+    let index = id - 1
+
+    if (!_gates[index]) {
+        _gates[index] = new GateController(defaultServoPin(id))
+    }
+
+    return _gates[index]
+}
 
 /**
  * TUS Code4Fun extension blocks.
- * Defaults: servo P0, closed 10°, open 90°, step 10°, delay 60 ms.
+ * Each gate is one 3D-printed unit with its own servo.
+ * Servo mounting is fixed in hardware: logical open/close are mapped accordingly.
  */
 //% color=#7B2CBF icon="\uf19d" weight=96 block="Code4Fun"
-//% groups='["Gate", "Configuration"]'
+//% groups='["Gate", "Sheep pen", "Configuration"]'
 namespace code4fun {
     /**
-     * Open the gate.
+     * Open a gate.
      */
-    //% blockId=code4fun_gate_open block="gate open"
+    //% blockId=code4fun_gate_open block="gate %gateId open"
     //% group="Gate"
+    //% gateId.min=1 gateId.max=4 defl=1
     //% weight=100
-    export function gateOpen(): void {
-        _gate.open()
+    export function gateOpen(gateId: number = 1): void {
+        gateById(gateId).open()
     }
 
     /**
-     * Close the gate.
+     * Close a gate.
      */
-    //% blockId=code4fun_gate_close block="gate close"
+    //% blockId=code4fun_gate_close block="gate %gateId close"
     //% group="Gate"
+    //% gateId.min=1 gateId.max=4 defl=1
     //% weight=99
-    export function gateClose(): void {
-        _gate.close()
+    export function gateClose(gateId: number = 1): void {
+        gateById(gateId).close()
     }
 
     /**
-     * Check whether the gate is open.
+     * Check whether a gate is open.
      */
-    //% blockId=code4fun_gate_is_open block="gate is open"
+    //% blockId=code4fun_gate_is_open block="gate %gateId is open"
     //% group="Gate"
+    //% gateId.min=1 gateId.max=4 defl=1
     //% weight=80
-    export function gateIsOpen(): boolean {
-        return _gate.isOpen()
+    export function gateIsOpen(gateId: number = 1): boolean {
+        return gateById(gateId).isOpen()
     }
 
     /**
-     * Check whether the gate is closed.
+     * Check whether a gate is closed.
      */
-    //% blockId=code4fun_gate_is_closed block="gate is closed"
+    //% blockId=code4fun_gate_is_closed block="gate %gateId is closed"
     //% group="Gate"
+    //% gateId.min=1 gateId.max=4 defl=1
     //% weight=79
-    export function gateIsClosed(): boolean {
-        return _gate.isClosed()
+    export function gateIsClosed(gateId: number = 1): boolean {
+        return gateById(gateId).isClosed()
     }
 
     /**
-     * Set which pin the gate servo is connected to.
+     * Set which pin a gate servo is connected to.
      */
-    //% blockId=code4fun_set_servo_pin block="set gate servo pin to %pin"
+    //% blockId=code4fun_set_servo_pin block="set gate %gateId servo pin to %pin"
     //% group="Configuration"
+    //% gateId.min=1 gateId.max=4 defl=1
     //% advanced=true
     //% weight=50
-    export function setGateServoPin(pin: AnalogPin): void {
-        _gate.setServoPin(pin)
+    export function setGateServoPin(gateId: number, pin: AnalogPin): void {
+        gateById(gateId).setServoPin(pin)
     }
 
     /**
-     * Set the closed angle for the gate.
+     * Set the closed angle for a gate.
      */
-    //% blockId=code4fun_set_closed_angle block="set gate closed angle to %angle"
+    //% blockId=code4fun_set_closed_angle block="set gate %gateId closed angle to %angle"
     //% group="Configuration"
+    //% gateId.min=1 gateId.max=4 defl=1
     //% advanced=true
     //% weight=49
-    export function setGateClosedAngle(angle: number): void {
-        _gate.setClosedAngle(angle)
+    export function setGateClosedAngle(gateId: number, angle: number): void {
+        gateById(gateId).setClosedAngle(angle)
     }
 
     /**
-     * Set the open angle for the gate.
+     * Set the open angle for a gate.
      */
-    //% blockId=code4fun_set_open_angle block="set gate open angle to %angle"
+    //% blockId=code4fun_set_open_angle block="set gate %gateId open angle to %angle"
     //% group="Configuration"
+    //% gateId.min=1 gateId.max=4 defl=1
     //% advanced=true
     //% weight=48
-    export function setGateOpenAngle(angle: number): void {
-        _gate.setOpenAngle(angle)
+    export function setGateOpenAngle(gateId: number, angle: number): void {
+        gateById(gateId).setOpenAngle(angle)
     }
 
     /**
-     * Set how many degrees the gate moves per step.
+     * Set how many degrees a gate moves per step.
      */
-    //% blockId=code4fun_set_step_degrees block="set gate step size to %degrees degrees"
+    //% blockId=code4fun_set_step_degrees block="set gate %gateId step size to %degrees degrees"
     //% group="Configuration"
+    //% gateId.min=1 gateId.max=4 defl=1
     //% advanced=true
     //% weight=47
-    export function setGateStepSize(degrees: number): void {
-        _gate.setStepDegrees(degrees)
+    export function setGateStepSize(gateId: number, degrees: number): void {
+        gateById(gateId).setStepDegrees(degrees)
     }
 
     /**
      * Set the delay between gate movement steps.
      */
-    //% blockId=code4fun_set_move_delay block="set gate move delay to %delayMs ms"
+    //% blockId=code4fun_set_move_delay block="set gate %gateId move delay to %delayMs ms"
     //% group="Configuration"
+    //% gateId.min=1 gateId.max=4 defl=1
     //% advanced=true
     //% weight=46
-    export function setGateMoveDelay(delayMs: number): void {
-        _gate.setMoveDelay(delayMs)
+    export function setGateMoveDelay(gateId: number, delayMs: number): void {
+        gateById(gateId).setMoveDelay(delayMs)
     }
 }

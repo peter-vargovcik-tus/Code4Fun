@@ -6,24 +6,32 @@ Student-facing extension package. Appears in the toolbox as **Code4Fun**, simila
 
 ### Gate (main toolbox)
 
-- `gate open`
-- `gate close`
-- `gate is open`
-- `gate is closed`
+- `gate 1 open` / `gate 1 close`
+- `gate 1 is open` / `gate 1 is closed`
+- Gates **1–4** are supported (one servo per 3D-printed gate unit)
+
+### Sheep pen (main toolbox)
+
+- `set up gate 1 sheep counter sensor P1 for 3 sheep`
+- `count sheep at gate 1`
+- `sheep count at gate 1`
+- `reset sheep counter at gate 1`
+
+First sheep opens the gate, the gate closes after the chosen number of sheep pass.
 
 ### Configuration (under **More...**)
 
-- `set gate servo pin to ...`
-- `set gate closed angle to ...`
-- `set gate open angle to ...`
-- `set gate step size to ... degrees`
-- `set gate move delay to ... ms`
+- `set gate 1 servo pin to ...`
+- `set gate 1 closed angle to ...`
+- `set gate 1 open angle to ...`
+- `set gate 1 step size to ... degrees`
+- `set gate 1 move delay to ... ms`
 
-Students can use `gate close` immediately — no setup required.
+Students can use `gate 1 close` immediately — no setup required.
 
 ## Publish to GitHub
 
-Push this folder to a public GitHub repo. Repo root should contain `pxt.json`, `gate.ts`, and `icon.png`.
+Push this folder to a public GitHub repo. Repo root should contain `pxt.json`, `gate.ts`, `sheepPen.ts`, and `icon.png`.
 
 Students add it in MakeCode:
 

@@ -2,7 +2,7 @@
   "name": "tus-code4fun",
   "description": "TUS Code4Fun — classroom-friendly tools for BBC micro:bit (gate + sensors + demos)",
   "icon": "icon.png",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "files": [
     "gate.ts"
   ],

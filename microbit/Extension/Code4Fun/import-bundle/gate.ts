@@ -249,66 +249,6 @@ namespace code4fun {
     }
 
     /**
-     * Set the closed angle for a gate on the given pin.
-     */
-    //% blockId=code4fun_set_closed_angle_pin block="set gate on pin %pin closed angle to %angle"
-    //% subcategory="Gate"
-    //% pin.fieldEditor=pinpicker
-    //% pin.fieldOptions.columns=4
-    //% pin.fieldOptions.tooltips=false
-    //% pin.defl=AnalogPin.P0
-    //% advanced=true
-    //% weight=49
-    export function setGateClosedAngle(pin: AnalogPin, angle: number): void {
-        gateByPin(pin).setClosedAngle(angle)
-    }
-
-    /**
-     * Set the open angle for a gate on the given pin.
-     */
-    //% blockId=code4fun_set_open_angle_pin block="set gate on pin %pin open angle to %angle"
-    //% subcategory="Gate"
-    //% pin.fieldEditor=pinpicker
-    //% pin.fieldOptions.columns=4
-    //% pin.fieldOptions.tooltips=false
-    //% pin.defl=AnalogPin.P0
-    //% advanced=true
-    //% weight=48
-    export function setGateOpenAngle(pin: AnalogPin, angle: number): void {
-        gateByPin(pin).setOpenAngle(angle)
-    }
-
-    /**
-     * Set how many degrees a gate moves per step.
-     */
-    //% blockId=code4fun_set_step_degrees_pin block="set gate on pin %pin step size to %degrees degrees"
-    //% subcategory="Gate"
-    //% pin.fieldEditor=pinpicker
-    //% pin.fieldOptions.columns=4
-    //% pin.fieldOptions.tooltips=false
-    //% pin.defl=AnalogPin.P0
-    //% advanced=true
-    //% weight=47
-    export function setGateStepSize(pin: AnalogPin, degrees: number): void {
-        gateByPin(pin).setStepDegrees(degrees)
-    }
-
-    /**
-     * Set the delay between gate movement steps.
-     */
-    //% blockId=code4fun_set_move_delay_pin block="set gate on pin %pin move delay to %delayMs ms"
-    //% subcategory="Gate"
-    //% pin.fieldEditor=pinpicker
-    //% pin.fieldOptions.columns=4
-    //% pin.fieldOptions.tooltips=false
-    //% pin.defl=AnalogPin.P0
-    //% advanced=true
-    //% weight=46
-    export function setGateMoveDelay(pin: AnalogPin, delayMs: number): void {
-        gateByPin(pin).setMoveDelay(delayMs)
-    }
-
-    /**
      * Read distance from an ultrasonic sensor (HC-SR04 style). Always returns centimeters.
      */
     //% blockId=code4fun_ultrasonic_cm block="distance (cm) trig %trig echo %echo"

@@ -177,12 +177,13 @@ function gateByPin(pin: AnalogPin): GateController {
  * Servo mounting is fixed in hardware: logical open/close are mapped accordingly.
  */
 //% color=#7B2CBF icon="\uf19d" weight=96 block="Code4Fun"
+//% groups='["Gate", "Ultrasonic", "Light"]'
 namespace code4fun {
     /**
      * Gently cycle a gate open and closed to seat the servo safely.
      */
     //% blockId=code4fun_gate_init_pin block="initialize gate on pin %pin"
-    //% subcategory="Gate"
+    //% group="Gate"
     //% pin.fieldEditor=pinpicker
     //% pin.fieldOptions.columns=4
     //% pin.fieldOptions.tooltips=false
@@ -196,7 +197,7 @@ namespace code4fun {
      * Open a gate on the given pin.
      */
     //% blockId=code4fun_gate_open_pin block="gate open on pin %pin"
-    //% subcategory="Gate"
+    //% group="Gate"
     //% pin.fieldEditor=pinpicker
     //% pin.fieldOptions.columns=4
     //% pin.fieldOptions.tooltips=false
@@ -210,7 +211,7 @@ namespace code4fun {
      * Close a gate on the given pin.
      */
     //% blockId=code4fun_gate_close_pin block="gate close on pin %pin"
-    //% subcategory="Gate"
+    //% group="Gate"
     //% pin.fieldEditor=pinpicker
     //% pin.fieldOptions.columns=4
     //% pin.fieldOptions.tooltips=false
@@ -224,7 +225,7 @@ namespace code4fun {
      * Check whether a gate on the given pin is open.
      */
     //% blockId=code4fun_gate_is_open_pin block="gate on pin %pin is open"
-    //% subcategory="Gate"
+    //% group="Gate"
     //% pin.fieldEditor=pinpicker
     //% pin.fieldOptions.columns=4
     //% pin.fieldOptions.tooltips=false
@@ -238,7 +239,7 @@ namespace code4fun {
      * Check whether a gate on the given pin is closed.
      */
     //% blockId=code4fun_gate_is_closed_pin block="gate on pin %pin is closed"
-    //% subcategory="Gate"
+    //% group="Gate"
     //% pin.fieldEditor=pinpicker
     //% pin.fieldOptions.columns=4
     //% pin.fieldOptions.tooltips=false
@@ -252,7 +253,7 @@ namespace code4fun {
      * Read distance from an ultrasonic sensor (HC-SR04 style). Always returns centimeters.
      */
     //% blockId=code4fun_ultrasonic_cm block="distance (cm) trig %trig echo %echo"
-    //% subcategory="Ultrasonic"
+    //% group="Ultrasonic"
     //% trig.fieldEditor=pinpicker
     //% trig.fieldOptions.columns=4
     //% trig.fieldOptions.tooltips=false
@@ -282,7 +283,7 @@ namespace code4fun {
      * Check if an obstacle is closer than a given distance (cm) using an ultrasonic sensor.
      */
     //% blockId=code4fun_ultrasonic_obstacle_lt_cm block="obstacle closer than %cm cm trig %trig echo %echo"
-    //% subcategory="Ultrasonic"
+    //% group="Ultrasonic"
     //% trig.fieldEditor=pinpicker
     //% trig.fieldOptions.columns=4
     //% trig.fieldOptions.tooltips=false
@@ -302,7 +303,7 @@ namespace code4fun {
      * Read light level from a photoresistor module. Returns 0-1023.
      */
     //% blockId=code4fun_light_level block="light level on pin %pin"
-    //% subcategory="Light"
+    //% group="Light"
     //% pin.fieldEditor=pinpicker
     //% pin.fieldOptions.columns=4
     //% pin.fieldOptions.tooltips=false
@@ -316,7 +317,7 @@ namespace code4fun {
      * Check if it is dark on a photoresistor module.
      */
     //% blockId=code4fun_is_dark block="is dark on pin %pin"
-    //% subcategory="Light"
+    //% group="Light"
     //% pin.fieldEditor=pinpicker
     //% pin.fieldOptions.columns=4
     //% pin.fieldOptions.tooltips=false

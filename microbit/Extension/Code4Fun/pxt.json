@@ -2,11 +2,19 @@
   "name": "tus-code4fun",
   "description": "TUS Code4Fun — classroom-friendly tools for BBC micro:bit (gate + sensors + demos)",
   "icon": "icon.png",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "files": [
     "gate.ts"
   ],
   "public": true,
+  "toolboxFilter": {
+    "blocks": {
+      "code4fun_set_closed_angle_pin": "hidden",
+      "code4fun_set_open_angle_pin": "hidden",
+      "code4fun_set_step_degrees_pin": "hidden",
+      "code4fun_set_move_delay_pin": "hidden"
+    }
+  },
   "dependencies": {
     "core": "*"
   }

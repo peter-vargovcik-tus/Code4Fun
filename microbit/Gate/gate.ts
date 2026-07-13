@@ -177,15 +177,15 @@ function gateByPin(pin: AnalogPin): GateController {
  * Servo mounting is fixed in hardware: logical open/close are mapped accordingly.
  */
 //% color=#7B2CBF icon="\uf19d" weight=96 block="Code4Fun"
-//% groups='["Gate", "Configuration"]'
 namespace code4fun {
     /**
      * Gently cycle a gate open and closed to seat the servo safely.
      */
     //% blockId=code4fun_gate_init_pin block="initialize gate on pin %pin"
-    //% group="Gate"
-    //% pin.fieldEditor=gridpicker
-    //% pin.fieldOptions.withPinRepeated=0
+    //% subcategory="Gate"
+    //% pin.fieldEditor=pinpicker
+    //% pin.fieldOptions.columns=4
+    //% pin.fieldOptions.tooltips=false
     //% pin.defl=AnalogPin.P0
     //% weight=101
     export function initializeGate(pin: AnalogPin): void {
@@ -196,9 +196,10 @@ namespace code4fun {
      * Open a gate on the given pin.
      */
     //% blockId=code4fun_gate_open_pin block="gate open on pin %pin"
-    //% group="Gate"
-    //% pin.fieldEditor=gridpicker
-    //% pin.fieldOptions.withPinRepeated=0
+    //% subcategory="Gate"
+    //% pin.fieldEditor=pinpicker
+    //% pin.fieldOptions.columns=4
+    //% pin.fieldOptions.tooltips=false
     //% pin.defl=AnalogPin.P0
     //% weight=100
     export function gateOpen(pin: AnalogPin): void {
@@ -209,9 +210,10 @@ namespace code4fun {
      * Close a gate on the given pin.
      */
     //% blockId=code4fun_gate_close_pin block="gate close on pin %pin"
-    //% group="Gate"
-    //% pin.fieldEditor=gridpicker
-    //% pin.fieldOptions.withPinRepeated=0
+    //% subcategory="Gate"
+    //% pin.fieldEditor=pinpicker
+    //% pin.fieldOptions.columns=4
+    //% pin.fieldOptions.tooltips=false
     //% pin.defl=AnalogPin.P0
     //% weight=99
     export function gateClose(pin: AnalogPin): void {
@@ -222,9 +224,10 @@ namespace code4fun {
      * Check whether a gate on the given pin is open.
      */
     //% blockId=code4fun_gate_is_open_pin block="gate on pin %pin is open"
-    //% group="Gate"
-    //% pin.fieldEditor=gridpicker
-    //% pin.fieldOptions.withPinRepeated=0
+    //% subcategory="Gate"
+    //% pin.fieldEditor=pinpicker
+    //% pin.fieldOptions.columns=4
+    //% pin.fieldOptions.tooltips=false
     //% pin.defl=AnalogPin.P0
     //% weight=80
     export function gateIsOpen(pin: AnalogPin): boolean {
@@ -235,9 +238,10 @@ namespace code4fun {
      * Check whether a gate on the given pin is closed.
      */
     //% blockId=code4fun_gate_is_closed_pin block="gate on pin %pin is closed"
-    //% group="Gate"
-    //% pin.fieldEditor=gridpicker
-    //% pin.fieldOptions.withPinRepeated=0
+    //% subcategory="Gate"
+    //% pin.fieldEditor=pinpicker
+    //% pin.fieldOptions.columns=4
+    //% pin.fieldOptions.tooltips=false
     //% pin.defl=AnalogPin.P0
     //% weight=79
     export function gateIsClosed(pin: AnalogPin): boolean {
@@ -248,9 +252,10 @@ namespace code4fun {
      * Set the closed angle for a gate on the given pin.
      */
     //% blockId=code4fun_set_closed_angle_pin block="set gate on pin %pin closed angle to %angle"
-    //% group="Configuration"
-    //% pin.fieldEditor=gridpicker
-    //% pin.fieldOptions.withPinRepeated=0
+    //% subcategory="Gate"
+    //% pin.fieldEditor=pinpicker
+    //% pin.fieldOptions.columns=4
+    //% pin.fieldOptions.tooltips=false
     //% pin.defl=AnalogPin.P0
     //% advanced=true
     //% weight=49
@@ -262,9 +267,10 @@ namespace code4fun {
      * Set the open angle for a gate on the given pin.
      */
     //% blockId=code4fun_set_open_angle_pin block="set gate on pin %pin open angle to %angle"
-    //% group="Configuration"
-    //% pin.fieldEditor=gridpicker
-    //% pin.fieldOptions.withPinRepeated=0
+    //% subcategory="Gate"
+    //% pin.fieldEditor=pinpicker
+    //% pin.fieldOptions.columns=4
+    //% pin.fieldOptions.tooltips=false
     //% pin.defl=AnalogPin.P0
     //% advanced=true
     //% weight=48
@@ -276,9 +282,10 @@ namespace code4fun {
      * Set how many degrees a gate moves per step.
      */
     //% blockId=code4fun_set_step_degrees_pin block="set gate on pin %pin step size to %degrees degrees"
-    //% group="Configuration"
-    //% pin.fieldEditor=gridpicker
-    //% pin.fieldOptions.withPinRepeated=0
+    //% subcategory="Gate"
+    //% pin.fieldEditor=pinpicker
+    //% pin.fieldOptions.columns=4
+    //% pin.fieldOptions.tooltips=false
     //% pin.defl=AnalogPin.P0
     //% advanced=true
     //% weight=47
@@ -290,13 +297,92 @@ namespace code4fun {
      * Set the delay between gate movement steps.
      */
     //% blockId=code4fun_set_move_delay_pin block="set gate on pin %pin move delay to %delayMs ms"
-    //% group="Configuration"
-    //% pin.fieldEditor=gridpicker
-    //% pin.fieldOptions.withPinRepeated=0
+    //% subcategory="Gate"
+    //% pin.fieldEditor=pinpicker
+    //% pin.fieldOptions.columns=4
+    //% pin.fieldOptions.tooltips=false
     //% pin.defl=AnalogPin.P0
     //% advanced=true
     //% weight=46
     export function setGateMoveDelay(pin: AnalogPin, delayMs: number): void {
         gateByPin(pin).setMoveDelay(delayMs)
+    }
+
+    /**
+     * Read distance from an ultrasonic sensor (HC-SR04 style). Always returns centimeters.
+     */
+    //% blockId=code4fun_ultrasonic_cm block="distance (cm) trig %trig echo %echo"
+    //% subcategory="Ultrasonic"
+    //% trig.fieldEditor=pinpicker
+    //% trig.fieldOptions.columns=4
+    //% trig.fieldOptions.tooltips=false
+    //% trig.defl=DigitalPin.P15
+    //% echo.fieldEditor=pinpicker
+    //% echo.fieldOptions.columns=4
+    //% echo.fieldOptions.tooltips=false
+    //% echo.defl=DigitalPin.P14
+    //% weight=90
+    export function ultrasonicDistanceCm(trig: DigitalPin, echo: DigitalPin): number {
+        pins.digitalWritePin(trig, 0)
+        control.waitMicros(2)
+
+        pins.digitalWritePin(trig, 1)
+        control.waitMicros(10)
+        pins.digitalWritePin(trig, 0)
+
+        // Timeout 30ms ~= 5m max range
+        const pulse = pins.pulseIn(echo, PulseValue.High, 30000)
+        if (pulse <= 0) return 0
+
+        // Convert microseconds to centimeters (approx.)
+        return Math.idiv(pulse, 58)
+    }
+
+    /**
+     * Check if an obstacle is closer than a given distance (cm) using an ultrasonic sensor.
+     */
+    //% blockId=code4fun_ultrasonic_obstacle_lt_cm block="obstacle closer than %cm cm trig %trig echo %echo"
+    //% subcategory="Ultrasonic"
+    //% trig.fieldEditor=pinpicker
+    //% trig.fieldOptions.columns=4
+    //% trig.fieldOptions.tooltips=false
+    //% trig.defl=DigitalPin.P15
+    //% echo.fieldEditor=pinpicker
+    //% echo.fieldOptions.columns=4
+    //% echo.fieldOptions.tooltips=false
+    //% echo.defl=DigitalPin.P14
+    //% cm.min=1 cm.max=300 cm.defl=20
+    //% weight=89
+    export function ultrasonicObstacleCloserThanCm(cm: number, trig: DigitalPin, echo: DigitalPin): boolean {
+        const d = ultrasonicDistanceCm(trig, echo)
+        return d > 0 && d < cm
+    }
+
+    /**
+     * Read light level from a photoresistor module. Returns 0-1023.
+     */
+    //% blockId=code4fun_light_level block="light level on pin %pin"
+    //% subcategory="Light"
+    //% pin.fieldEditor=pinpicker
+    //% pin.fieldOptions.columns=4
+    //% pin.fieldOptions.tooltips=false
+    //% pin.defl=AnalogPin.P0
+    //% weight=88
+    export function lightLevel(pin: AnalogPin): number {
+        return pins.analogReadPin(pin)
+    }
+
+    /**
+     * Check if it is dark on a photoresistor module.
+     */
+    //% blockId=code4fun_is_dark block="is dark on pin %pin"
+    //% subcategory="Light"
+    //% pin.fieldEditor=pinpicker
+    //% pin.fieldOptions.columns=4
+    //% pin.fieldOptions.tooltips=false
+    //% pin.defl=AnalogPin.P0
+    //% weight=87
+    export function isDark(pin: AnalogPin): boolean {
+        return pins.analogReadPin(pin) < 300
     }
 }

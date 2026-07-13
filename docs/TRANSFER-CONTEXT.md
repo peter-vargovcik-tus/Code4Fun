@@ -30,9 +30,20 @@ TUS **Code4Fun** camp project: micro:bit MakeCode extension for a Hexbug/bristle
 
 ---
 
-## Current plan (NOT implemented yet)
+## Current plan
 
 Full plan: [`docs/plans/pir-sensor-migration.md`](plans/pir-sensor-migration.md)
+
+### Phased delivery (latest)
+
+1. **Phase 1 — Sensor APIs** — `sensors.ts` with TypeScript read functions, **no MakeCode blocks yet**; test on hardware via `main.ts`
+2. **Phase 2 — Push** — commit + push after hardware test passes
+3. **Phase 3 — Blocks** — add `//% subcategory` blocks (HaloHD style), deploy extension
+
+### TUS logo
+
+- **Extension tile:** yes — use `https://tus.ie/app/themes/app-theme/assets/main/fav/apple-touch-icon.png` as repo `icon.png`
+- **Toolbox category:** Font Awesome only (not custom PNG); use TUS bronze colour `#9B7B4B` + FA icon
 
 ### v1 scope (agreed)
 
